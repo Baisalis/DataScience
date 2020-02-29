@@ -6,7 +6,11 @@ import os
 
 
 app = Flaks(__name__)
-# set config here 
+app_settings = os.getenv(
+    'APP_SETTINGS',
+    'project.server.config.DevelopmentConfig'
+)
+app.config.from_object(app_settings)
 db = SQLAlchemy(app)
 
 
