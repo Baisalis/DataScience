@@ -53,27 +53,11 @@ class Song(db.Model):
         you want to add labels for each prior to the
         VALUES section of the query.
         """
-        base_query = """INSERT INTO songs VALUES (
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {},
-            {}
-        );
-        """.format(
+        return '''
+        INSERT INTO songs 
+        (id, track_id, artist_name, track_name, acousticness, danceability, duration_ms, energy, instrumentalness, key, liveness, loudness, mode, speechiness, tempo, time_signature, valence, popularity)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+        ''', (
             self.id,
             self.track_id, 
             self.artist_name,

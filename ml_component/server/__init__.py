@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 app_settings = os.getenv(
     'APP_SETTINGS',
-    'ml_component.server.config.ProductionConfig'
+    'ml_component.server.config.DevelopmentConfig'
 )
 app.config.from_object(app_settings)
 db = SQLAlchemy(app)
