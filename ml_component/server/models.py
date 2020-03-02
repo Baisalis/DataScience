@@ -3,6 +3,7 @@ from ml_component.server import db
 
 
 class Song(db.Model):
+    __tablename__ = "songs"
     id = db.Column(db.Integer, primary_key=True)
     artist_name = db.Column(db.String)
     track_id = db.Column(db.String)
