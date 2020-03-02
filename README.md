@@ -3,6 +3,18 @@
 > Current live link:
 > https://spotify-ml-component.herokuapp.com/
 
+### routes 
+
+index /api/v1 GET
+> returns a simple hello world message
+
+get_song_by_id /api/v1/song/<track_id> GET 
+> returns Spotify song details given a Spotify track_id
+
+recommend_using_track_id /api/v1/recommend/<tack_id> GET 
+> returns recommendations for songs given a Spotify track_id
+
+
 ### setup
 
 ```sh
