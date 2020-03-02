@@ -43,3 +43,53 @@ class Song(db.Model):
             "valence": self.valence,
             "popularity": self.popularity
         }
+    
+    def build_insert_query(self):
+        """
+        wow this is a mess,
+        please update if you have a better method 
+        to do so. 
+        just ensure that the order is the same unless
+        you want to add labels for each prior to the
+        VALUES section of the query.
+        """
+        base_query = """INSERT INTO songs VALUES (
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+        );
+        """.format(
+            self.id,
+            self.track_id, 
+            self.artist_name,
+            self.track_name,
+            self.acousticness,
+            self.danceability,
+            self.duration_ms,
+            self.energy,
+            self.instrumentalness,
+            self.key,
+            self.liveness,
+            self.loudness,
+            self.mode,
+            self.speechiness,
+            self.tempo,
+            self.time_signature,
+            self.valence,
+            self.popularity
+        )
