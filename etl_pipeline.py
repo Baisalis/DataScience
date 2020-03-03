@@ -85,12 +85,15 @@ def postgres_to_postgres():
     curs.execute(create_table)
     # add every song to the deployed db
     for song in songs:
-        curr_query = song.build_insert_query()
-        curs.execute(curr_query)
+        curr_query_string, params = song.build_insert_query()
+        print(curr_query_string)
+        print(params)
+        curs.execute(curr_query_string, params)
     conn.commit()
     # sanity check
     sanity_check = "SELECT COUNT(*) FROM songs"
-    remote_song_count = curs.execute.fetchone()
+    curs.execute(sanity_check)
+    remote_song_count = curs.fetchone()
     local_song_count = len(songs)
     print(remote_song_count, local_song_count)
     assert(remote_song_count == local_song_count)
@@ -98,7 +101,6 @@ def postgres_to_postgres():
 
 
 if __name__ == "__main__":
-    print(sys.argv)
     if len(sys.argv) == 1:
         print("Please add argv local or remote")
     elif sys.argv[1] == "local":
